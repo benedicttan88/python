@@ -1,0 +1,11 @@
+Swap Details,,
+Nowdate,date,
+Nominal,double,10000
+Pay leg Effective Date,date,30/7/2016
+Pay leg Maturity Date,date,30/7/2016
+Receive Leg Effective Date,date,30/7/2016
+Receive Leg Maturity Date,date,30/7/2016
+Pay leg frequency,double,6m
+Receive leg frequency,double,3m
+Pay leg daycount,string,act/360
+Receive leg daycount,string,30/360

@@ -77,6 +77,10 @@ class yieldcurve(object):
 
 class yieldcurve2(object):
 
+    #yieldcurve takes in df
+    #df = 
+    
+    
     def __init__(self,start_date,df):
         self.start_YF = 0.0;
         self.start_date = start_date
@@ -137,20 +141,81 @@ class yieldcurve2(object):
                 return np.exp(-r2_*T)*np.exp(r1_*t)
 
 
+    def forward(self,T1,T2):
+        #note that t <= S
+        if type(T1) == ql.Date:
+            pass
+        
+        else:
+            if ((T2==0) or (T1 == T2)):
+                return 0
+            else:
+                df = self.discount(T1,T2)
+            
+                return ( (1/df) - 1 ) / (T2-T1)
+    
+    
+    
+    def get_r(self,T1,T2):
+        
+        if type(T1) == ql.Date:
+            pass
+        
+        else:
+            if ((T2 == 0) or (T1 == T2)):
+                return 0
+            else:
+                df = self.discount(T1,T2)
+            
+                return -np.log(df)/(T2-T1)
+            
+            
+            
+    
+    def get_swap_rate(self,t,T1,T2,cap_freq):
+        
+        if type(T1) == ql.Date:
+            pass
+        
+        else:
+            
+            top = self.discount(t,T1) - self.discount(t,T2)
+            
+            bottom = 0.0
+            tempT = T2
+            while (tempT >= (T1 + cap_freq)):
+                bottom += cap_freq * self.discount(t,tempT)
+                tempT -= cap_freq
 
-
-
-#if __name__ == "__main__":
+            return top/bottom
+        
+            
+            
+            
+            
         
     
-#    df = pd.read_csv(location + "ois_rates_31Mar" + ".csv", header=None)
-#    cols = ["Date","Rate"]
-#    df.columns = cols
-#    df.Date = df.Date.astype(int)
-#    
-#    df.Date = [ql.Date(d) for d in df.Date]
-#    
-#    
-#    today = ql.Date(31,ql.March,2017)
-#    
-#    YC = yieldcurve(today,df);
+
+
+
+if __name__ == "__main__":
+        
+    print "testing"
+
+
+    print ql.Date(20,3,1988);
+        
+    a= raw_input("Press anything");
+    #df = pd.read_csv(location + "ois_rates_31Mar" + ".csv", header=None)
+    #cols = ["Date","Rate"]
+    #df.columns = cols
+    #df.Date = df.Date.astype(int)
+    
+    #df.Date = [ql.Date(d) for d in df.Date]
+    
+    
+    #today = ql.Date(31,ql.March,2017)
+    
+    #YC = yieldcurve(today,df);
+    #print YC.A
+

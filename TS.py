@@ -41,7 +41,7 @@ class yieldcurve(object):
         self.start_date = start_date
         self.Date = df.Date
         self.Rate = df.Rate
-        self.A = zip(self.Date,self.Rate)
+        self.A = list(zip(self.Date,self.Rate))
     
     def linear_interpolate(self,T):         #QuantLib Date
         
@@ -65,8 +65,8 @@ class yieldcurve(object):
             r_ = self.linear_interpolate(t)
             return np.exp(-r_ * (t - self.start_date) / 365)
         else:
-            print t
-            print T
+            print(t)
+            print(T)
             r1_ = self.linear_interpolate(t)
             r2_ = self.linear_interpolate(T)
             #return np.exp( -(r2_-r1_) * (T - t) / 365 )
@@ -87,10 +87,10 @@ class yieldcurve2(object):
         self.Date = df.Date
         self.YF = [ (d - start_date)/365 for d in df.Date]
         self.Rate = df.Rate
-        self.Original_Set = zip(self.Date,self.Rate)
+        self.Original_Set = list(zip(self.Date,self.Rate))
         
         self.A = self.Original_Set
-        self.B = zip(self.YF,self.Rate)
+        self.B = list(zip(self.YF,self.Rate))
         if self.start_date < self.Date[0]:
             self.A = [(self.start_date,self.Rate.values[0])] + self.A
             self.B = [(self.start_YF,self.Rate.values[0])] + self.B
@@ -122,8 +122,8 @@ class yieldcurve2(object):
                 r_ = self.linear_interpolate(t)
                 return np.exp(-r_ * (t - self.start_date) / 365)
             else:
-                print t
-                print T
+                print(t)
+                print(T)
                 r1_ = self.linear_interpolate(t)
                 r2_ = self.linear_interpolate(T)
                 #return np.exp( -(r2_-r1_) * (T - t) / 365 )
@@ -200,12 +200,12 @@ class yieldcurve2(object):
 
 if __name__ == "__main__":
         
-    print "testing"
+    print("testing")
 
 
-    print ql.Date(20,3,1988);
+    print( ql.Date(20,3,1988) );
         
-    a= raw_input("Press anything");
+#    a= raw_input("Press anything");
     #df = pd.read_csv(location + "ois_rates_31Mar" + ".csv", header=None)
     #cols = ["Date","Rate"]
     #df.columns = cols

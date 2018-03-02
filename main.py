@@ -138,8 +138,10 @@ if __name__ == "__main__":
     #print scipy.optimize.differential_evolution(g,bounds,disp=True)
     
     
-    print "BFGS"
-    print scipy.optimize.fmin_l_bfgs_b(g,x0,disp=True)
+    print("BFGS")
+    print(scipy.optimize.fmin_l_bfgs_b(g,x0,disp=True))
+    
+    
     
     
     

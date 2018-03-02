@@ -65,7 +65,7 @@ class GBM(object):
             
             for i in range(1, N_Time + 1):
                 
-                for j in range(NumSimulations / 2):
+                for j in range(NumSimulations // 2):
                     
                     rand = rng.randn()
                                         
@@ -84,7 +84,7 @@ class GBM(object):
 
                 #print ""
             
-            print "Path Generation Done"
+            print("Path Generation Done")
             return pathContainer
             
         else:

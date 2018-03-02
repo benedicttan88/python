@@ -41,8 +41,6 @@ class LocalVolatility(object):
         self.VolMaturities = 1                                      #dummy variables
         
         
-        
-        
         self.calibrated_ = False
     
     

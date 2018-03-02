@@ -16,12 +16,10 @@ import TS
 
 ####### location
 
-
 location = "D:\\python\\Input\\"
 filename = "atm_cap_vol"
 
 df = pd.read_csv(location + filename + ".csv")
-
 
 
 #####################################

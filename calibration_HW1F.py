@@ -150,11 +150,11 @@ class HW1F_constant(object):
             blackPrices.append(self.__Black_Caplet(1,0,x-0.5,x,y,K))
         
         maturities_T1 = [(x - 0.5) for x in maturities_T2]     #freq is set to 0.5
-        lst = zip(maturities_T1,maturities_T2,strikes,blackPrices)
+        lst = list(zip(maturities_T1,maturities_T2,strikes,blackPrices))
         #x = [a, sigma]
         self.temp_list = lst
         self.blackPrices = blackPrices
-        print lst
+        print( lst )
         
         def objective_function(x, lst):
             
@@ -169,7 +169,7 @@ class HW1F_constant(object):
         #bounds = [(0,5),(0,5)]
         #result = differential_evolution(objective_function,bounds,args=(lst))
                 
-        print result
+        print( result )
         
         self.sigma = result.x
         
@@ -187,7 +187,7 @@ class HW1F_constant(object):
                 caplet_price = self.__HW_Caplet(1,0,T1,T2,K)
                 modelPrices.append(caplet_price)
             
-            calibration_report = pd.DataFrame(zip(self.blackPrices,modelPrices),columns=["Market Caplet Price","HW Caplet Price"])
+            calibration_report = pd.DataFrame(list(zip(self.blackPrices,modelPrices)),columns=["Market Caplet Price","HW Caplet Price"])
             
             return calibration_report
         
@@ -199,10 +199,9 @@ class HW1F_constant(object):
 if __name__ == "__main__":
     
     
-    location = "D:\\python\\Input\\"
-    
-    
-    df = pd.read_csv(location + "Yieldcurve\\" + "ois_rates" + ".csv", header=None)
+    #location = "D:\\python\\Input\\"
+    #df = pd.read_csv(location + "Yieldcurve\\" + "ois_rates" + ".csv", header=None)
+    df = pd.read_csv("Input/Yieldcurve/ois_rates.csv", header= None)
     cols = ["Date","Rate"]
     df.columns = cols
     df.Date = df.Date.astype(int)
@@ -223,7 +222,8 @@ if __name__ == "__main__":
     
     
     #######  Caplet vol location
-    black_caplet_vols = pd.read_csv(location + "Caplet Vols\\" + "Caplet ATM Vol from Cap Object" + ".txt",delimiter='\t')
+    #black_caplet_vols = pd.read_csv(location + "Caplet Vols\\" + "Caplet ATM Vol from Cap Object" + ".txt",delimiter='\t')
+    black_caplet_vols = pd.read_csv("Input/Caplet Vols/Caplet ATM Vol from Cap Object" + ".txt",delimiter= '\t' )
     
     mat=[]; vol =[]
     for index,row in black_caplet_vols.iterrows():

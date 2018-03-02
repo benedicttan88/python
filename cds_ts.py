@@ -41,7 +41,6 @@ def get_dates(location,filename):
     
 
 
-
 def make_dates(df):
     
     ts_dates = [];
@@ -49,6 +48,7 @@ def make_dates(df):
         ts_dates.append(ql.Date(x))
         
     return ts_dates
+
 
 
 def make_rates(today):

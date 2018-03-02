@@ -35,3 +35,5 @@ plt.plot(t,y)
 plt.title("PRDC Payoff")
 plt.xlabel("S_T")
 plt.ylabel("coupon rate")
+
+

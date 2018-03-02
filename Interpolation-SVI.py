@@ -171,7 +171,9 @@ if __name__ == "__main__":
     LocalVol = SVI()    
     
     ################# MARKET DATA ###########################################################
-    filename = "D:\\python\\svi\\spx_index_21sep.csv"
+    #filename = "D:\\python\\svi\\spx_index_21sep.csv"
+    
+    filename = "svi/spx_index_21sep.csv"
     df = pd.read_csv(filename , header= None)
     #df = pd.read_csv("C:\\Users\\tanbened\\python\\Input\\SVI Interpolation Data\\spx_index_21sep.csv",header=None)
 
@@ -195,7 +197,7 @@ if __name__ == "__main__":
     model_total_implied_variance = [LocalVol.svi(A,P,B,S,M,T, xx) for xx in log_moneyness]
     market_total_implied_variance = [(T*m*m) for m in marketvol]
     
-    calibration_report = pd.DataFrame(zip(market_total_implied_variance,model_total_implied_variance),columns=["Market Variance","Model Variance"], index=log_moneyness)
+    calibration_report = pd.DataFrame(list(zip(market_total_implied_variance,model_total_implied_variance)),columns=["Market Variance","Model Variance"], index=log_moneyness)
     calibration_report.plot()
     
     
